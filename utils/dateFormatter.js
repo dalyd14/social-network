@@ -1,7 +1,7 @@
 const moment = require('moment')
 
 const dateformatter = (timeStamp) => {
-    console.log(timeStamp)
+    return moment(timeStamp).format('lll')
 }
 
 module.exports = dateformatter

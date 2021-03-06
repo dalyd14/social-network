@@ -11,6 +11,8 @@ const userController = {
 
     getUser ({ params }, res) {
         User.findOne({ _id: params.userId })
+        .populate('friends')
+        .populate('thoughts')
         .then(dbUser => {
             res.json(dbUser)
         })
