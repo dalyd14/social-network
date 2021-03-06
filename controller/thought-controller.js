@@ -1,7 +1,7 @@
 const { Thought, User } = require('../model')
 
 const thoughtController = {
-    
+
     getAllThoughts (req, res) {
         Thought.find()
         .then(dbThought => {
@@ -11,7 +11,7 @@ const thoughtController = {
     },
 
     getThought ({ params }, res) {
-        Thought.findOne({ _id: params})
+        Thought.findOne({ _id: params.thoughtId })
         .then(dbThought => {
             res.json(dbThought)
         })
@@ -22,7 +22,7 @@ const thoughtController = {
         Thought.create(body)
         .then(dbThought => {
             User.findOneAndUpdate(
-                { _id: dbThought.userId },
+                { username: dbThought.username },
                 { $push: { thoughts: dbThought._id } }
             ).then(dbUser => {
                 res.json(dbThought)
