@@ -38,12 +38,13 @@ const userController = {
     },
 
     deleteUser ({ params }, res) {
+        // delete thoughts as well
         User.findOneAndDelete({ _id: params.userId })
         .then(dbUser => {
             res.json(dbUser)
         })
         .catch(err => res.status(500).json(err))
-    },
+    }
 }
 
 module.exports = userController
